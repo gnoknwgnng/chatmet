@@ -43,13 +43,34 @@ const client = new Client({
 
 // === Generate QR for first-time login ===
 client.on('qr', qr => {
-    console.log("Scan this QR to login WhatsApp (only first time):");
+    console.log("=========================================");
+    console.log("SCAN THE QR CODE BELOW TO LOGIN TO WHATSAPP:");
+    console.log("=========================================");
     qrcode.generate(qr, { small: true });
+    console.log("=========================================");
+    console.log("QR CODE END");
+    console.log("=========================================");
 });
 
 // === Ready Event ===
 client.on('ready', () => {
-    console.log("✅ Soulmate Bot is running on WhatsApp!");
+    console.log("=========================================");
+    console.log("✅ Soulmate Bot is now connected to WhatsApp!");
+    console.log("=========================================");
+});
+
+// === Authentication Error ===
+client.on('auth_failure', msg => {
+    console.log("=========================================");
+    console.log("❌ AUTHENTICATION FAILURE:", msg);
+    console.log("=========================================");
+});
+
+// === Client Error ===
+client.on('error', error => {
+    console.log("=========================================");
+    console.log("❌ CLIENT ERROR:", error.message);
+    console.log("=========================================");
 });
 
 // === Character Prompts ===
@@ -179,6 +200,11 @@ client.on('message', async msg => {
         }
     }
 });
+
+// Log startup
+console.log("=========================================");
+console.log("🚀 Starting Soulmate Bot...");
+console.log("=========================================");
 
 // Start Client
 client.initialize();
