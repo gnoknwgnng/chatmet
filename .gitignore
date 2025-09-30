@@ -30,4 +30,4 @@ sessions/
 .wwebjs_auth/
 
 # npm
-.npmrc
+# .npmrc
