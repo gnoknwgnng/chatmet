@@ -21,7 +21,24 @@ const groq = new Groq({ apiKey: groqApiKey });
 
 // === WhatsApp Client ===
 const client = new Client({
-    authStrategy: new LocalAuth({ clientId: "soulmate-bot" })
+    puppeteer: {
+        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--single-process',
+            '--disable-gpu'
+        ],
+        executablePath: process.env.CHROMIUM_PATH || '/usr/bin/chromium-browser'
+    },
+    authStrategy: new LocalAuth({ 
+        clientId: "soulmate-bot",
+        dataPath: process.env.SESSION_DATA_PATH || "./sessions/"
+    })
 });
 
 // === Generate QR for first-time login ===
