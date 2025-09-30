@@ -1,0 +1,14 @@
+{
+  "918977087532@c.us": {
+    "step": "choose_character",
+    "data": {
+      "character": "father",
+      "age": "20",
+      "status": "college"
+    }
+  },
+  "120363181965127268@newsletter": {
+    "step": "start",
+    "data": {}
+  }
+}
