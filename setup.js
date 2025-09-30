@@ -10,4 +10,13 @@ if (!fs.existsSync(sessionsDir)) {
     console.log(`Sessions directory already exists: ${sessionsDir}`);
 }
 
+// Create the specific session directory for whatsapp-web.js
+const sessionPath = path.join(sessionsDir, 'session-soulmate-bot');
+if (!fs.existsSync(sessionPath)) {
+    fs.mkdirSync(sessionPath, { recursive: true });
+    console.log(`Created session directory: ${sessionPath}`);
+} else {
+    console.log(`Session directory already exists: ${sessionPath}`);
+}
+
 console.log('Setup complete!');
