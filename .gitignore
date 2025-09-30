@@ -28,3 +28,6 @@ coverage/
 # Sessions
 sessions/
 .wwebjs_auth/
+
+# npm
+.npmrc
