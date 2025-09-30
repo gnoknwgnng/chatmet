@@ -20,6 +20,32 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const groq = new Groq({ apiKey: groqApiKey });
 
 // === WhatsApp Client ===
+// Ensure session directory exists before creating client
+const fs = require('fs');
+const path = require('path');
+
+const sessionDataPath = process.env.SESSION_DATA_PATH || "./sessions/";
+const sessionPath = path.join(sessionDataPath, 'session-soulmate-bot');
+
+// Create session directory if it doesn't exist
+if (!fs.existsSync(sessionDataPath)) {
+    try {
+        fs.mkdirSync(sessionDataPath, { recursive: true, mode: 0o777 });
+        console.log(`✅ Created session data directory: ${sessionDataPath}`);
+    } catch (err) {
+        console.log(`⚠️ Could not create session data directory: ${err.message}`);
+    }
+}
+
+if (!fs.existsSync(sessionPath)) {
+    try {
+        fs.mkdirSync(sessionPath, { recursive: true, mode: 0o777 });
+        console.log(`✅ Created session directory: ${sessionPath}`);
+    } catch (err) {
+        console.log(`⚠️ Could not create session directory: ${err.message}`);
+    }
+}
+
 const client = new Client({
     puppeteer: {
         headless: true,
@@ -37,10 +63,8 @@ const client = new Client({
     },
     authStrategy: new LocalAuth({ 
         clientId: "soulmate-bot",
-        dataPath: process.env.SESSION_DATA_PATH || "./sessions/"
-    }),
-    // Add session creation callback to handle directory creation
-    session: true
+        dataPath: sessionDataPath
+    })
 });
 
 // === Generate QR for first-time login ===
