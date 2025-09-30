@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "node setup.js && node index.js",
+    "postinstall": "node -e \"require('fs').mkdirSync('./sessions', {recursive: true});\""
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
     "axios": "^1.12.2",
