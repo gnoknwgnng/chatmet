@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node setup.js && node index.js",
-    "postinstall": "node -e \"require('fs').mkdirSync('./sessions', {recursive: true});\""
+    "postinstall": "PUPPETEER_SKIP_DOWNLOAD=true node -e \"require('fs').mkdirSync('./sessions', {recursive: true});\""
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.58.0",
