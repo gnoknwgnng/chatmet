@@ -26,6 +26,14 @@ SESSION_DATA_PATH=./sessions/
 PUPPETEER_SKIP_DOWNLOAD=true
 ```
 
+### Troubleshooting
+
+If you encounter an "ENOENT: no such file or directory" error, this is because the application needs to create session directories for WhatsApp Web. The setup script should handle this automatically, but if you still encounter issues:
+
+1. Make sure the SESSION_DATA_PATH environment variable is set correctly
+2. Check that the application has write permissions to the sessions directory
+3. Verify that the sessions directory is not included in .gitignore (it should be committed for persistence)
+
 ### Supabase Setup
 
 Create a `users` table in Supabase with this SQL:
