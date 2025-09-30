@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node setup.js && node index.js",
+    "start": "node setup.js && node health.js & node index.js",
     "postinstall": "PUPPETEER_SKIP_DOWNLOAD=true node -e \"require('fs').mkdirSync('./sessions', {recursive: true});\""
   },
   "dependencies": {
