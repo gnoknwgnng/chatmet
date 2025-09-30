@@ -38,7 +38,9 @@ const client = new Client({
     authStrategy: new LocalAuth({ 
         clientId: "soulmate-bot",
         dataPath: process.env.SESSION_DATA_PATH || "./sessions/"
-    })
+    }),
+    // Add session creation callback to handle directory creation
+    session: true
 });
 
 // === Generate QR for first-time login ===
@@ -212,5 +214,20 @@ console.log("=========================================");
 console.log("🚀 Starting Soulmate Bot...");
 console.log("=========================================");
 
+// Add error handling for client initialization
+client.on('error', error => {
+    console.log("=========================================");
+    console.log("❌ CLIENT ERROR:", error.message);
+    console.log("Error details:", error);
+    console.log("=========================================");
+});
+
 // Start Client
-client.initialize();
+try {
+    client.initialize();
+} catch (error) {
+    console.log("=========================================");
+    console.log("❌ CLIENT INITIALIZATION ERROR:", error.message);
+    console.log("Error details:", error);
+    console.log("=========================================");
+}
