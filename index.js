@@ -50,6 +50,12 @@ client.on('qr', qr => {
     console.log("=========================================");
     console.log("QR CODE END");
     console.log("=========================================");
+    
+    // Also save QR code to a file for web access
+    const fs = require('fs');
+    const qrFile = './qr.txt';
+    fs.writeFileSync(qrFile, qr);
+    console.log(`QR code also saved to ${qrFile}`);
 });
 
 // === Ready Event ===

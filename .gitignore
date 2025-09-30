@@ -31,3 +31,6 @@ sessions/
 
 # npm
 # .npmrc
+
+# QR Code
+qr.txt
